@@ -7,4 +7,4 @@ https://dweb.link/ipns/ipfs.xsukax.com<br />
 https://cloudflare-ipfs.com/ipns/ipfs.xsukax.com<br />
 https://ipfs.io/ipns/ipfs.xsukax.com
 
-Homepage: https://xsukax.com/ipfs/
+Homepage: https://ipfs.xsukax.com
