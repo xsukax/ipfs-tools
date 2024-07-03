@@ -22,7 +22,7 @@ sudo docker run -d -p 8098:80 --name xsukax-ipfs xsukax-ipfs:latest
 http://localhost:8098
 ### You can download docker image directly & run container:
 ```sh
-sudo docker run -d -p 8098:80 --restart unless-stopped --name xsukax-ipfs xsukax/ipfs-tools:1.0
+sudo docker run -d -p 8098:80 --restart unless-stopped --name xsukax-ipfs xsukax/ipfs-tools:latest
 ```
 Check localhost url<br/>
 http://localhost:8098
