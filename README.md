@@ -1,6 +1,6 @@
 # xsukax IPFS Tools
 Simple HTML CSS JS code to help IPFS Users to View &amp; Download Files From Different Gateways.<br />
-Check Demo: https://ipfs.xsukax.com
+Check Demo: https://xsukax.github.io/ipfs-tools/
 
 ### To build image using Dockerfile, follow these steps:
 1- Clone ipfs-tools project
