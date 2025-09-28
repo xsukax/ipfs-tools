@@ -1,4 +1,7 @@
 # xsukax IPFS Tools
+
+![xsukax.com](https://xsukax.net/badge.php?badge=xsukax-IPFS%20Tools-grey-red-FFF.svg)
+
 Simple HTML CSS JS code to help IPFS Users to View &amp; Download Files From Different Gateways.<br />
 Check Demo: https://xsukax.github.io/ipfs-tools/
 
