@@ -10,742 +10,64 @@
     <title>xsukax IPFS Tools</title>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #0f0f0f;
-            --bg-tertiary: #151515;
-            --bg-card: #1a1a1a;
-            --bg-glass: rgba(255, 255, 255, 0.05);
-            --bg-glass-hover: rgba(255, 255, 255, 0.08);
-            --border-primary: rgba(255, 255, 255, 0.1);
-            --border-secondary: rgba(255, 255, 255, 0.15);
-            --border-accent: rgba(99, 102, 241, 0.3);
-            --text-primary: #ffffff;
-            --text-secondary: #e2e8f0;
-            --text-muted: #94a3b8;
-            --text-dim: #64748b;
-            --accent-primary: #6366f1;
-            --accent-secondary: #8b5cf6;
-            --accent-tertiary: #06b6d4;
-            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
-            --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
-            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
-            --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.5);
-            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
-            --shadow-glow-hover: 0 0 60px rgba(99, 102, 241, 0.4);
-            --border-radius: 16px;
-            --border-radius-lg: 24px;
-            --border-radius-xl: 32px;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
-            color: var(--text-secondary);
-            min-height: 100vh;
-            line-height: 1.6;
-            font-size: 16px;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-        
-        /* Header */
-        header {
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-primary);
-            padding: 24px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition);
-            letter-spacing: -0.02em;
-        }
-        
-        .logo:hover {
-            filter: brightness(1.2);
-            transform: scale(1.05);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            padding: 12px 20px;
-            border-radius: var(--border-radius);
-            background: var(--bg-glass);
-            border: 1px solid var(--border-primary);
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-        
-        .nav-link:hover {
-            color: var(--text-primary);
-            background: var(--bg-glass-hover);
-            border-color: var(--border-secondary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        /* Main Content */
-        main {
-            padding: 80px 0 60px;
-            min-height: calc(100vh - 96px);
-            display: flex;
-            align-items: center;
-        }
-        
-        /* Input Section */
-        .input-section {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        
-        .hero-title {
-            font-size: 64px;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            background: var(--gradient-primary);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.03em;
-            text-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
-        }
-        
-        .hero-subtitle {
-            font-size: 22px;
-            color: var(--text-muted);
-            margin-bottom: 48px;
-            line-height: 1.6;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 400;
-        }
-        
-        .input-container {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        
-        .input-wrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .input-field {
-            width: 100%;
-            padding: 24px 32px;
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            border: 2px solid var(--border-primary);
-            border-radius: var(--border-radius-lg);
-            color: var(--text-primary);
-            font-size: 18px;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-            outline: none;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .input-field:focus {
-            border-color: var(--accent-primary);
-            background: var(--bg-glass-hover);
-            box-shadow: var(--shadow-glow);
-            transform: translateY(-2px);
-        }
-        
-        .input-field::placeholder {
-            color: var(--text-dim);
-            font-weight: 400;
-        }
-        
-        .submit-btn {
-            position: relative;
-            background: var(--gradient-primary);
-            color: var(--text-primary);
-            border: none;
-            padding: 24px 48px;
-            border-radius: var(--border-radius-lg);
-            font-size: 18px;
-            font-weight: 700;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: var(--transition);
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-glow-hover);
-            filter: brightness(1.1);
-        }
-        
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-        
-        .submit-btn:active {
-            transform: translateY(-2px);
-        }
-        
-        /* Results Section */
-        .results-section {
-            display: none;
-            animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
-            max-width: none;
-        }
-        
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .back-btn {
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-primary);
-            padding: 16px 32px;
-            border-radius: var(--border-radius);
-            font-size: 15px;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            margin-bottom: 40px;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .back-btn:hover {
-            background: var(--bg-glass-hover);
-            border-color: var(--border-secondary);
-            color: var(--text-primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .results-grid {
-            display: grid;
-            gap: 32px;
-            width: 90%;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-        
-        .section-card {
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-primary);
-            border-radius: var(--border-radius-xl);
-            padding: 40px;
-            transition: var(--transition);
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .section-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .section-card:hover {
-            border-color: var(--border-secondary);
-            box-shadow: var(--shadow-xl);
-            transform: translateY(-4px);
-        }
-        
-        .section-card:hover::before {
-            opacity: 1;
-        }
-        
-        .section-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 32px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            letter-spacing: -0.02em;
-        }
-        
-        .section-title::before {
-            content: '';
-            width: 6px;
-            height: 28px;
-            background: var(--gradient-primary);
-            border-radius: 3px;
-            box-shadow: var(--shadow-glow);
-        }
-        
-        .link-grid {
-            display: grid;
-            gap: 16px;
-        }
-        
-        .link-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-primary);
-            border-radius: var(--border-radius);
-            padding: 24px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .link-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-            opacity: 0.1;
-            transition: var(--transition);
-        }
-        
-        .link-item:hover {
-            background: var(--bg-glass);
-            border-color: var(--border-accent);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .link-item:hover::before {
-            width: 4px;
-        }
-        
-        .link-info {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .link-name {
-            color: var(--accent-primary);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 18px;
-            transition: var(--transition);
-            letter-spacing: -0.01em;
-        }
-        
-        .link-name:hover {
-            color: var(--accent-secondary);
-            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-        }
-        
-        .link-url {
-            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-            font-size: 14px;
-            color: var(--text-dim);
-            word-break: break-all;
-            line-height: 1.5;
-            background: var(--bg-secondary);
-            padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border-primary);
-            transition: var(--transition);
-        }
-        
-        .link-item:hover .link-url {
-            color: var(--text-muted);
-            border-color: var(--border-secondary);
-        }
-        
-        /* Donation Section */
-        .donation-grid {
-            display: grid;
-            gap: 20px;
-        }
-        
-        .donation-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-primary);
-            border-radius: var(--border-radius);
-            padding: 28px;
-            transition: var(--transition);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .donation-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .donation-item:hover {
-            background: var(--bg-glass);
-            border-color: var(--border-secondary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .donation-item:hover::before {
-            opacity: 1;
-        }
-        
-        .crypto-info {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        
-        .crypto-name {
-            font-weight: 700;
-            color: var(--text-primary);
-            font-size: 18px;
-            letter-spacing: -0.01em;
-        }
-        
-        .crypto-symbol {
-            font-size: 14px;
-            color: var(--text-muted);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .crypto-address {
-            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
-            font-size: 14px;
-            color: var(--text-muted);
-            background: var(--bg-secondary);
-            padding: 16px 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border-primary);
-            word-break: break-all;
-            line-height: 1.4;
-            max-width: 320px;
-            transition: var(--transition);
-        }
-        
-        .donation-item:hover .crypto-address {
-            border-color: var(--border-secondary);
-            color: var(--text-secondary);
-        }
-        
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--accent-primary);
-            animation: spin 1s linear infinite;
-            margin-right: 12px;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Floating Particles Background */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 20s infinite linear;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-100px) scale(1); opacity: 0; }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 24px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            header {
-                padding: 20px 0;
-            }
-            
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .nav-links {
-                gap: 16px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .nav-link {
-                padding: 10px 16px;
-                font-size: 14px;
-            }
-            
-            main {
-                padding: 60px 0 40px;
-            }
-            
-            .hero-title {
-                font-size: 42px;
-                margin-bottom: 20px;
-            }
-            
-            .hero-subtitle {
-                font-size: 18px;
-                margin-bottom: 40px;
-            }
-            
-            .input-wrapper {
-                gap: 16px;
-            }
-            
-            .input-field {
-                padding: 20px 24px;
-                font-size: 16px;
-            }
-            
-            .submit-btn {
-                padding: 20px 32px;
-                font-size: 16px;
-            }
-            
-            .results-section > div {
-                width: 95% !important;
-                padding: 0 10px;
-            }
-            
-            .results-grid {
-                width: 100%;
-                gap: 24px;
-            }
-            
-            .section-card {
-                padding: 24px;
-                border-radius: var(--border-radius-lg);
-            }
-            
-            .section-title {
-                font-size: 20px;
-                margin-bottom: 24px;
-            }
-            
-            .link-item {
-                padding: 20px;
-            }
-            
-            .link-name {
-                font-size: 16px;
-            }
-            
-            .link-url {
-                font-size: 13px;
-                padding: 10px 14px;
-            }
-            
-            .donation-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-                padding: 24px;
-            }
-            
-            .crypto-address {
-                max-width: 100%;
-                font-size: 13px;
-                padding: 14px 16px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 36px;
-            }
-            
-            .hero-subtitle {
-                font-size: 16px;
-            }
-            
-            .input-field {
-                padding: 18px 20px;
-            }
-            
-            .submit-btn {
-                padding: 18px 28px;
-            }
-            
-            .results-section > div {
-                width: 98% !important;
-                padding: 0 5px;
-            }
-            
-            .results-grid {
-                width: 100%;
-                gap: 20px;
-            }
-            
-            .section-card {
-                padding: 20px;
-            }
-            
-            .link-item {
-                padding: 16px;
-            }
-            
-            .donation-item {
-                padding: 20px;
-            }
-        }
-        
-        /* Dark scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-secondary);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-dim);
-        }
-        
-        /* Selection */
-        ::selection {
-            background: rgba(99, 102, 241, 0.3);
-            color: var(--text-primary);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #007AFF; --secondary: #5856D6; --success: #34C759; --warning: #FF9500; --danger: #FF3B30; --bg-primary: #FFFFFF; --bg-secondary: #F2F2F7; --bg-tertiary: #FFFFFF; --text-primary: #000000; --text-secondary: #3C3C43; --text-tertiary: #8E8E93; --border: #C6C6C8; --shadow: rgba(0, 0, 0, 0.1); --radius: 12px; --radius-small: 8px; --transition: all 0.2s ease; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif; background: var(--bg-secondary); color: var(--text-primary); min-height: 100vh; line-height: 1.6; font-size: 16px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: var(--bg-tertiary); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 16px 0; position: sticky; top: 0; z-index: 1000; }
+        .header-content { display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 20px; font-weight: 600; color: var(--primary); text-decoration: none; cursor: pointer; transition: var(--transition); }
+        .logo:hover { opacity: 0.7; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 15px; padding: 8px 16px; border-radius: var(--radius-small); transition: var(--transition); }
+        .nav-link:hover { color: var(--primary); background: var(--bg-secondary); }
+        main { padding: 60px 0; min-height: calc(100vh - 84px); display: flex; align-items: center; }
+        .input-section { text-align: center; max-width: 600px; margin: 0 auto; width: 100%; }
+        .hero-title { font-size: 48px; font-weight: 700; line-height: 1.1; margin-bottom: 16px; color: var(--text-primary); letter-spacing: -0.02em; }
+        .hero-subtitle { font-size: 20px; color: var(--text-secondary); margin-bottom: 40px; line-height: 1.5; font-weight: 400; }
+        .input-container { position: relative; margin: 0 auto 32px; }
+        .input-wrapper { display: flex; flex-direction: column; gap: 16px; }
+        .input-field { width: 100%; padding: 16px 20px; background: var(--bg-tertiary); border: 2px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 17px; font-weight: 400; font-family: inherit; transition: var(--transition); outline: none; box-shadow: 0 1px 3px var(--shadow); }
+        .input-field:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1); }
+        .input-field::placeholder { color: var(--text-tertiary); }
+        .submit-btn { background: var(--primary); color: white; border: none; padding: 16px 32px; border-radius: var(--radius); font-size: 17px; font-weight: 600; font-family: inherit; cursor: pointer; transition: var(--transition); }
+        .submit-btn:hover { background: #0056b3; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3); }
+        .submit-btn:active { transform: translateY(0); }
+        .results-section { display: none; animation: slideInUp 0.3s ease; width: 100%; max-width: none; }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .back-btn { background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border); padding: 12px 20px; border-radius: var(--radius); font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; margin-bottom: 32px; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
+        .back-btn:hover { background: var(--bg-secondary); border-color: var(--text-tertiary); }
+        .results-grid { display: grid; gap: 24px; width: 100%; margin: 0 auto; }
+        .section-card { background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: var(--transition); box-shadow: 0 1px 3px var(--shadow); }
+        .section-card:hover { box-shadow: 0 4px 12px var(--shadow); transform: translateY(-2px); }
+        .section-title { font-size: 22px; font-weight: 600; color: var(--text-primary); margin-bottom: 20px; letter-spacing: -0.01em; }
+        .link-grid { display: grid; gap: 12px; }
+        .link-item { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-small); padding: 16px; transition: var(--transition); }
+        .link-item:hover { background: white; border-color: var(--primary); transform: translateY(-1px); box-shadow: 0 2px 8px var(--shadow); }
+        .link-info { display: flex; flex-direction: column; gap: 6px; }
+        .link-name { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 16px; transition: var(--transition); }
+        .link-name:hover { color: var(--secondary); }
+        .link-url { font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace; font-size: 13px; color: var(--text-tertiary); word-break: break-all; line-height: 1.4; }
+        .donation-grid { display: grid; gap: 16px; }
+        .donation-item { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-small); padding: 20px; transition: var(--transition); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .donation-item:hover { background: white; border-color: var(--success); transform: translateY(-1px); box-shadow: 0 2px 8px var(--shadow); }
+        .crypto-info { display: flex; flex-direction: column; gap: 4px; }
+        .crypto-name { font-weight: 600; color: var(--text-primary); font-size: 16px; }
+        .crypto-symbol { font-size: 13px; color: var(--text-tertiary); font-weight: 500; text-transform: uppercase; }
+        .crypto-address { font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace; font-size: 13px; color: var(--text-secondary); background: white; padding: 12px 16px; border-radius: var(--radius-small); border: 1px solid var(--border); word-break: break-all; line-height: 1.3; max-width: 280px; }
+        .loading { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 50%; border-top-color: var(--primary); animation: spin 1s linear infinite; margin-right: 8px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 768px) { .container { padding: 0 16px; } header { padding: 12px 0; } .header-content { flex-direction: column; gap: 16px; } .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; } main { padding: 40px 0; } .hero-title { font-size: 36px; margin-bottom: 12px; } .hero-subtitle { font-size: 18px; margin-bottom: 32px; } .input-wrapper { gap: 12px; } .input-field { padding: 14px 16px; font-size: 16px; } .submit-btn { padding: 14px 24px; font-size: 16px; } .results-grid { gap: 20px; } .section-card { padding: 20px; } .section-title { font-size: 20px; margin-bottom: 16px; } .link-item { padding: 14px; } .donation-item { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px; } .crypto-address { max-width: 100%; font-size: 12px; } }
+        @media (max-width: 480px) { .hero-title { font-size: 32px; } .hero-subtitle { font-size: 16px; } .input-field { padding: 12px 14px; } .submit-btn { padding: 12px 20px; } .section-card { padding: 16px; } .link-item { padding: 12px; } .donation-item { padding: 14px; } }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+        ::selection { background: rgba(0, 122, 255, 0.2); }
     </style>
 </head>
 
 <body>
-    <!-- Floating Particles -->
-    <div class="particles" id="particles"></div>
-
     <header>
         <div class="container">
             <div class="header-content">
@@ -753,7 +75,6 @@
                 <nav class="nav-links">
                     <a href="https://ipfs.io" target="_blank" rel="noopener noreferrer" class="nav-link">About IPFS</a>
                     <a href="https://ipfs.io#install" target="_blank" rel="noopener noreferrer" class="nav-link">Install</a>
-                    <a href="https://github.com/ipfs/go-ipfs/issues/new/choose" target="_blank" rel="noopener noreferrer" class="nav-link">Report Bug</a>
                 </nav>
             </div>
         </div>
@@ -782,7 +103,7 @@
         </div>
 
         <div id="results-section" class="results-section">
-            <div style="width: 90%; max-width: 1600px; margin: 0 auto;">
+            <div style="width: 100%; margin: 0 auto;">
                 <button class="back-btn" onclick="showHome()">← Back to Home</button>
                 
                 <div class="results-grid">
@@ -857,21 +178,6 @@
         const videoViewers = [
             { name: 'IPFS Video Player', url: 'https://ipfs.video/ipfs/' }
         ];
-
-        // Floating particles animation
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = window.innerWidth > 768 ? 50 : 20;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
 
         // Main functions
         function processCID() {
@@ -953,8 +259,6 @@
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            
             const urlParams = new URLSearchParams(window.location.search);
             const cidFromUrl = urlParams.get('cid');
             
